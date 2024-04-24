@@ -189,13 +189,12 @@ function toggleModal(show, modal = elements.modalWindow) {
 /*************************************************************************************************************************************************
  * COMPLETE FUNCTION CODE
  * **********************************************************************************************************************************************/
-
 function addTask(event) {
-  event.preventDefault(); 
+  event.preventDefault();
 
   //Assign user input to the task object
     const task = {
-      
+     
     };
     const newTask = createNewTask(task);
     if (newTask) {
@@ -206,7 +205,6 @@ function addTask(event) {
       refreshTasksUI();
     }
 }
-
 
 function toggleSidebar(show) {
  
