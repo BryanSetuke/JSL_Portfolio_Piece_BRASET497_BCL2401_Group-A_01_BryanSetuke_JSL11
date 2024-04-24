@@ -22,6 +22,8 @@ initializeData();
 const elements = {
   headerBoardName: document.getElementById('header-board-name'),
   hideSideBarBtn: document.getElementById('hide-side-bar-btn'),
+  showSideBarBtn: document.getElementById('show-side-bar-btn'),
+  themeSwitch: document.getElementById('switch'),
 
 }
 
