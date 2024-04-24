@@ -222,12 +222,10 @@ function toggleSidebar(show) {
  localStorage.setItem('showSideBar', show);
 }
 
-
 function toggleTheme() {
- 
+  document.body.classList.toggle('light-theme');
+  localStorage.setItem('light-theme', document.body.classList.contains('light-theme') ? 'enabled' : 'disabled');
 }
-
-
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
