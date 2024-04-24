@@ -53,21 +53,26 @@ function fetchAndDisplayBoardsAndTasks() {
  
 // Creates different boards in the DOM
 // TASK: Fix Bugs
-function displayBoards(boards) {
-  const boardsContainer = document.getElementById("boards-nav-links-div");
-  boardsContainer.innerHTML = ''; // Clears the container
-  boards.forEach(board => {
-    const boardElement = document.createElement("button");
-    boardElement.textContent = board;
-    boardElement.classList.add("board-btn");
-    boardElement.addEventListener("click", () => {
-      elements.headerBoardName.textContent = board;
-      filterAndDisplayTasksByBoard(board);
-      activeBoard = board;
-      localStorage.setItem("activeBoard", JSON.stringify(activeBoard));
-      styleActiveBoard(activeBoard);
+function filterAndDisplayTasksByBoard(boardName) {
+  const filteredTasks = getTasks().filter(task => task.board === boardName);
+  elements.columnDivs.forEach(column => {
+    const status = column.dataset.status;
+    column.innerHTML = `<div class="column-head-div">
+                          <span class="dot" id="${status}-dot"></span>
+                          <h4 class="columnHeader">${status.toUpperCase()}</h4>
+                        </div>`;
+
+    const tasksContainer = document.createElement("div");
+    column.appendChild(tasksContainer);
+
+    filteredTasks.filter(task => task.status === status).forEach(task => {
+      const taskElement = document.createElement("div");
+      taskElement.classList.add("task-div");
+      taskElement.textContent = task.title;
+      taskElement.dataset.taskId = task.id;
+      taskElement.addEventListener("click", () => openEditTaskModal(task));
+      tasksContainer.appendChild(taskElement);
     });
-    boardsContainer.appendChild(boardElement);
   });
 }
 
