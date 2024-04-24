@@ -24,8 +24,16 @@ const elements = {
   hideSideBarBtn: document.getElementById('hide-side-bar-btn'),
   showSideBarBtn: document.getElementById('show-side-bar-btn'),
   themeSwitch: document.getElementById('switch'),
+  createNewTaskBtn: document.getElementById('add-new-task-btn'),
+  modalWindow: document.getElementById('new-task-modal-window'),
+  editTaskModal: document.querySelector('.edit-task-modal-window'),
+  cancelEditBtn: document.getElementById('cancel-edit-btn'),
+  cancelAddTaskBtn: document.getElementById('cancel-add-task-btn'),
+  filterDiv: document.getElementById('filterDiv'),
 
-}
+  createTaskBtn: document.getElementById("create-task-btn"),
+  columnDivs: document.querySelectorAll('.column-div')
+};
 
 let activeBoard = ""
 
