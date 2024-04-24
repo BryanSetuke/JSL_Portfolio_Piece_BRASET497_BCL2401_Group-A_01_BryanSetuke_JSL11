@@ -50,7 +50,7 @@ function fetchAndDisplayBoardsAndTasks() {
     refreshTasksUI();
   }
 }
-  
+ 
 // Creates different boards in the DOM
 // TASK: Fix Bugs
 function displayBoards(boards) {
