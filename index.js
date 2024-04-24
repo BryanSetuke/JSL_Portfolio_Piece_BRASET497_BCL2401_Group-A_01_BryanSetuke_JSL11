@@ -1,7 +1,7 @@
 // TASK: import helper functions from utils
 import {getTasks, createNewTask, patchTask, deleteTask} from './utils/taskFunctions.js';
 // TASK: import initialData
-import {initialData} from './initiaData.js';
+import {initialData} from './initiaLData.js';
 
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
@@ -17,7 +17,6 @@ function initializeData() {
   }
 }
 
-initializeData();
 // TASK: Get elements from the DOM
 const elements = {
   headerBoardName: document.getElementById('header-board-name'),
@@ -75,36 +74,36 @@ function filterAndDisplayTasksByBoard(boardName) {
     });
   });
 }
-function refreshTasksUI() {
-  filterAndDisplayTasksByBoard(activeBoard);
-}
+// function refreshTasksUI() {
+//   filterAndDisplayTasksByBoard(activeBoard);
+// }
 
 // Filters tasks corresponding to the board name and displays them on the DOM.
 // TASK: Fix Bugs
-function filterAndDisplayTasksByBoard(boardName) {
-  const filteredTasks = getTasks().filter(task => task.board === boardName);
-  elements.columnDivs.forEach(column => {
-    const status = column.dataset.status;
-    column.innerHTML = `<div class="column-head-div">
-                          <span class="dot" id="${status}-dot"></span>
-                          <h4 class="columnHeader">${status.toUpperCase()}</h4>
-                        </div>`;
+// function filterAndDisplayTasksByBoard(boardName) {
+//   const filteredTasks = getTasks().filter(task => task.board === boardName);
+//   elements.columnDivs.forEach(column => {
+//     const status = column.dataset.status;
+//     column.innerHTML = `<div class="column-head-div">
+//                           <span class="dot" id="${status}-dot"></span>
+//                           <h4 class="columnHeader">${status.toUpperCase()}</h4>
+//                         </div>`;
 
-    const tasksContainer = document.createElement("div");
-    column.appendChild(tasksContainer);
+//     const tasksContainer = document.createElement("div");
+//     column.appendChild(tasksContainer);
 
-    filteredTasks.filter(task => task.status === status).forEach(task => {
-      const taskElement = document.createElement("div");
-      taskElement.classList.add("task-div");
-      taskElement.textContent = task.title;
-      taskElement.dataset.taskId = task.id;
-      taskElement.addEventListener("click", () =>{
-         openEditTaskModal(task)
-        });
-      tasksContainer.appendChild(taskElement);
-    });
-  });
-}
+//     filteredTasks.filter(task => task.status === status).forEach(task => {
+//       const taskElement = document.createElement("div");
+//       taskElement.classList.add("task-div");
+//       taskElement.textContent = task.title;
+//       taskElement.dataset.taskId = task.id;
+//       taskElement.addEventListener("click", () =>{
+//          openEditTaskModal(task)
+//         });
+//       tasksContainer.appendChild(taskElement);
+//     });
+//   });
+// }
 
 function refreshTasksUI() {
   filterAndDisplayTasksByBoard(activeBoard);
@@ -282,6 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function init() {
+  initializeData();
   setupEventListeners();
   const showSidebar = localStorage.getItem('showSideBar') === 'true';
   toggleSidebar(showSidebar);
