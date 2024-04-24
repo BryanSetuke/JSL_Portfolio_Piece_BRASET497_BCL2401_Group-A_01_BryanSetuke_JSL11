@@ -80,7 +80,7 @@ function filterAndDisplayTasksByBoard(boardName) {
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
   elements.columnDivs.forEach(column => {
-    const status = column.getAttribute("data-status");
+    const status = column.dataset.status;
     // Reset column content while preserving the column title
     column.innerHTML = `<div class="column-head-div">
                           <span class="dot" id="${status}-dot"></span>
