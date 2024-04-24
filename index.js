@@ -75,6 +75,9 @@ function filterAndDisplayTasksByBoard(boardName) {
     });
   });
 }
+function refreshTasksUI() {
+  filterAndDisplayTasksByBoard(activeBoard);
+}
 
 // Filters tasks corresponding to the board name and displays them on the DOM.
 // TASK: Fix Bugs
