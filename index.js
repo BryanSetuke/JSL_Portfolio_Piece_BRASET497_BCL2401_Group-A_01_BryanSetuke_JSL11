@@ -207,8 +207,21 @@ function addTask(event) {
 }
 
 function toggleSidebar(show) {
- 
+  const sidebarElement = document.getElementById('side-bar-div');
+
+ if (show) {
+   sidebarElement.style.display = 'block';
+   elements.showSideBarBtn.style.display = "none";
+   //sidebarElement.appendChild(svgElement);
+ } else {
+   sidebarElement.style.display = 'none';
+   elements.showSideBarBtn.style.display = "block";
+   // sidebarElement.removeChild(svgElement);
+ }
+
+ localStorage.setItem('showSideBar', show);
 }
+
 
 function toggleTheme() {
  
