@@ -35,7 +35,7 @@ const elements = {
   columnDivs: document.querySelectorAll('.column-div')
 };
 
-let activeBoard = ""
+let activeBoard = "";
 
 // Extracts unique board names from tasks
 // TASK: FIX BUGS
