@@ -87,6 +87,7 @@ function filterAndDisplayTasksByBoard(boardName) {
                           <h4 class="columnHeader">${status.toUpperCase()}</h4>
                         </div>`;
 
+
     const tasksContainer = document.createElement("div");
     column.appendChild(tasksContainer);
 
