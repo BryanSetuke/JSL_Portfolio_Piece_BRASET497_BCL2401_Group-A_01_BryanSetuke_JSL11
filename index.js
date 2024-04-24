@@ -98,7 +98,9 @@ function filterAndDisplayTasksByBoard(boardName) {
       taskElement.classList.add("task-div");
       taskElement.textContent = task.title;
       taskElement.dataset.taskId = task.id;
-      taskElement.addEventListener("click", () => openEditTaskModal(task));
+      taskElement.addEventListener("click", () =>{
+         openEditTaskModal(task)
+        });
       tasksContainer.appendChild(taskElement);
     });
   });
@@ -147,7 +149,7 @@ function setupEventListeners() {
   // Cancel editing task event listener
   const cancelEditBtn = document.getElementById('cancel-edit-btn');
   cancelEditBtn.addEventListener('click', () => toggleModal(false, elements.editTaskModal));
-};
+
 
   // Cancel adding new task event listener*
   const cancelAddTaskBtn = document.getElementById('cancel-add-task-btn');
@@ -176,6 +178,8 @@ function setupEventListeners() {
   elements.modalWindow.addEventListener('submit', (event) => {
     addTask(event);
   });
+
+};
 
 // Toggles tasks modal
 // Task: Fix bugs
