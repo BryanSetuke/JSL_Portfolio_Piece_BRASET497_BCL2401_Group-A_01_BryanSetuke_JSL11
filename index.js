@@ -76,17 +76,12 @@ function displayBoards(boards) {
 // TASK: Fix Bugs
 function filterAndDisplayTasksByBoard(boardName) {
   const filteredTasks = getTasks().filter(task => task.board === boardName);
-
-  // Ensure the column titles are set outside of this function or correctly initialized before this function runs
-
   elements.columnDivs.forEach(column => {
     const status = column.dataset.status;
-    // Reset column content while preserving the column title
     column.innerHTML = `<div class="column-head-div">
                           <span class="dot" id="${status}-dot"></span>
                           <h4 class="columnHeader">${status.toUpperCase()}</h4>
                         </div>`;
-
 
     const tasksContainer = document.createElement("div");
     column.appendChild(tasksContainer);
@@ -97,14 +92,10 @@ function filterAndDisplayTasksByBoard(boardName) {
       taskElement.textContent = task.title;
       taskElement.dataset.taskId = task.id;
       taskElement.addEventListener("click", () => openEditTaskModal(task));
-
-
       tasksContainer.appendChild(taskElement);
     });
   });
 }
-
-
 
 function refreshTasksUI() {
   filterAndDisplayTasksByBoard(activeBoard);
