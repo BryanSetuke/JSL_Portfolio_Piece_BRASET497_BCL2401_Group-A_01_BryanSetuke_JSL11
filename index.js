@@ -11,7 +11,7 @@ import {initialData} from './initiaData.js';
 function initializeData() {
   if (!localStorage.getItem('tasks')) {
     localStorage.setItem('tasks', JSON.stringify(initialData)); 
-    localStorage.setItem('showSideBar', 'true')
+    localStorage.setItem('showSideBar', true); //Key name, corrected; boolean value, set.
   } else {
     console.log('Data already exists in localStorage');
   }
