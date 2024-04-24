@@ -149,9 +149,6 @@ function setupEventListeners() {
   cancelEditBtn.addEventListener('click', () => toggleModal(false, elements.editTaskModal));
 };
 
-
-
-
   // Cancel adding new task event listener*
   const cancelAddTaskBtn = document.getElementById('cancel-add-task-btn');
   cancelAddTaskBtn.addEventListener('click', () => {
