@@ -192,19 +192,31 @@ function toggleModal(show, modal = elements.modalWindow) {
 function addTask(event) {
   event.preventDefault();
 
-  //Assign user input to the task object
-    const task = {
-     
-    };
-    const newTask = createNewTask(task);
-    if (newTask) {
-      addTaskToUI(newTask);
-      toggleModal(false);
-      elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
-      event.target.reset();
-      refreshTasksUI();
-    }
+  // Get user inputs from the modal
+  const title = document.getElementById('title-input').value;
+  const description = document.getElementById('desc-input').value;
+  const status = document.getElementById('select-status').value;
+
+  // Create a task object with the user inputs
+  const task = {
+    title: title,
+    description: description,
+    status: status
+  };
+
+  // Create the new task using a helper function
+  const newTask = createNewTask(task);
+
+  // If the new task is successfully created, add it to the UI
+  if (newTask) {
+    addTaskToUI(newTask);
+    toggleModal(false); // Close the modal
+    elements.filterDiv.style.display = 'none'; // Hide the filter overlay
+    event.target.reset(); // Reset the form
+    refreshTasksUI(); // Refresh the UI to reflect the changes
+  }
 }
+
 
 function toggleSidebar(show) {
   const sidebarElement = document.getElementById('side-bar-div');
