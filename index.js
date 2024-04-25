@@ -49,6 +49,25 @@ function fetchAndDisplayBoardsAndTasks() {
     refreshTasksUI();
   }
 }
+
+function displayBoards(boards) {
+  const boardsContainer = document.getElementById("boards-nav-links-div");
+  boardsContainer.innerHTML = ''; // Clears the container
+  boards.forEach(board => {
+    const boardElement = document.createElement("button");
+    boardElement.textContent = board;
+    boardElement.classList.add("board-btn");
+    boardElement.addEventListener('click', () => { 
+      elements.headerBoardName.textContent = board;
+      filterAndDisplayTasksByBoard(board);
+      activeBoard = board //assigns active board
+      localStorage.setItem("activeBoard", JSON.stringify(activeBoard))
+      styleActiveBoard(activeBoard)
+    });
+    boardsContainer.appendChild(boardElement);
+  });
+
+}
  
 // Creates different boards in the DOM
 // TASK: Fix Bugs
@@ -75,29 +94,29 @@ function filterAndDisplayTasksByBoard(boardName) {
   });
 }
 
-function displayBoards(boards) {
-  const boardsNavLinksDiv = document.getElementById('boards-nav-links-div');
-  boardsNavLinksDiv.innerHTML = ''; // Clear the existing board links
+// function displayBoards(boards) {
+//   const boardsNavLinksDiv = document.getElementById('boards-nav-links-div');
+//   boardsNavLinksDiv.innerHTML = ''; // Clear the existing board links
 
-  boards.forEach(board => {
-    const boardLink = document.createElement('a');
-    boardLink.textContent = board;
-    boardLink.classList.add('board-btn');
-    boardLink.href = '#'; // Set the href attribute to '#' for now
-    boardLink.addEventListener('click', () => {
-      switchBoard(board);
-    });
-    boardsNavLinksDiv.appendChild(boardLink);
-  });
-}
+//   boards.forEach(board => {
+//     const boardLink = document.createElement('a');
+//     boardLink.textContent = board;
+//     boardLink.classList.add('board-btn');
+//     boardLink.href = '#'; // Set the href attribute to '#' for now
+//     boardLink.addEventListener('click', () => {
+//       switchBoard(board);
+//     });
+//     boardsNavLinksDiv.appendChild(boardLink);
+//   });
+// }
 
-function switchBoard(boardName) {
-  activeBoard = boardName;
-  localStorage.setItem('activeBoard', JSON.stringify(activeBoard));
-  elements.headerBoardName.textContent = activeBoard;
-  styleActiveBoard(activeBoard);
-  refreshTasksUI();
-}
+// function switchBoard(boardName) {
+//   activeBoard = boardName;
+//   localStorage.setItem('activeBoard', JSON.stringify(activeBoard));
+//   elements.headerBoardName.textContent = activeBoard;
+//   styleActiveBoard(activeBoard);
+//   refreshTasksUI();
+// }
 
 // function refreshTasksUI() {
 //   filterAndDisplayTasksByBoard(activeBoard);
@@ -128,7 +147,7 @@ function switchBoard(boardName) {
 //       tasksContainer.appendChild(taskElement);
 //     });
 //   });
-// }
+// 
 
 function refreshTasksUI() {
   filterAndDisplayTasksByBoard(activeBoard);
@@ -227,7 +246,7 @@ function addTask(event) {
     title: title,
     description: description,
     status: status,
-    id: '',
+    id: JSON.parse(localStorage.getItem('id')),
     board: activeBoard,
   };
 
@@ -310,7 +329,7 @@ function saveTaskChanges(taskId) {
   };
 
   // Update task using a helper function
-  patchTask(updatedTask);
+  patchTask(taskId, updatedTask);
 
   // Close the modal and refresh the UI to reflect the changes
   toggleModal(false, elements.editTaskModal);
