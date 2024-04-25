@@ -226,7 +226,9 @@ function addTask(event) {
   const task = {
     title: title,
     description: description,
-    status: status
+    status: status,
+    id: '',
+    board: activeBoard,
   };
 
   // Create the new task using a helper function
@@ -274,11 +276,16 @@ function openEditTaskModal(task) {
   const deleteTaskBtn = document.getElementById('delete-task-btn');
 
   // Call saveTaskChanges upon click of Save Changes button
-  saveChangesBtn.addEventListener('click', () => saveTaskChanges(task.id));
+  saveChangesBtn.addEventListener('click', () => {
+    saveTaskChanges(task.id);
+    refreshTasksUI();
+    toggleModal(false, elements.editTaskModal);
+  });
 
   // Delete task using a helper function and close the task modal
   deleteTaskBtn.addEventListener('click', () => {
-    handleDeleteTask(task.id);
+    deleteTask(task.id);
+    refreshTasksUI();
     toggleModal(false, elements.editTaskModal);
   });
 
@@ -298,7 +305,8 @@ function saveTaskChanges(taskId) {
     id: taskId,
     title: updatedTitle,
     description: updatedDescription,
-    status: updatedStatus
+    status: updatedStatus,
+    board: activeBoard
   };
 
   // Update task using a helper function
