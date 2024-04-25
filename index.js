@@ -91,6 +91,14 @@ function displayBoards(boards) {
   });
 }
 
+function switchBoard(boardName) {
+  activeBoard = boardName;
+  localStorage.setItem('activeBoard', JSON.stringify(activeBoard));
+  elements.headerBoardName.textContent = activeBoard;
+  styleActiveBoard(activeBoard);
+  refreshTasksUI();
+}
+
 // function refreshTasksUI() {
 //   filterAndDisplayTasksByBoard(activeBoard);
 // }
