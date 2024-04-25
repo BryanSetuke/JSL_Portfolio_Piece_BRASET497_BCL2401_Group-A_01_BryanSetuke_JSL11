@@ -74,6 +74,23 @@ function filterAndDisplayTasksByBoard(boardName) {
     });
   });
 }
+
+function displayBoards(boards) {
+  const boardsNavLinksDiv = document.getElementById('boards-nav-links-div');
+  boardsNavLinksDiv.innerHTML = ''; // Clear the existing board links
+
+  boards.forEach(board => {
+    const boardLink = document.createElement('a');
+    boardLink.textContent = board;
+    boardLink.classList.add('board-btn');
+    boardLink.href = '#'; // Set the href attribute to '#' for now
+    boardLink.addEventListener('click', () => {
+      switchBoard(board);
+    });
+    boardsNavLinksDiv.appendChild(boardLink);
+  });
+}
+
 // function refreshTasksUI() {
 //   filterAndDisplayTasksByBoard(activeBoard);
 // }
