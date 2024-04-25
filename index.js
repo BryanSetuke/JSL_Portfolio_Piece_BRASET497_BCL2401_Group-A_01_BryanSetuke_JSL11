@@ -217,7 +217,6 @@ function addTask(event) {
   }
 }
 
-
 function toggleSidebar(show) {
   const sidebarElement = document.getElementById('side-bar-div');
 
