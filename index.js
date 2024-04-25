@@ -94,60 +94,6 @@ function filterAndDisplayTasksByBoard(boardName) {
   });
 }
 
-// function displayBoards(boards) {
-//   const boardsNavLinksDiv = document.getElementById('boards-nav-links-div');
-//   boardsNavLinksDiv.innerHTML = ''; // Clear the existing board links
-
-//   boards.forEach(board => {
-//     const boardLink = document.createElement('a');
-//     boardLink.textContent = board;
-//     boardLink.classList.add('board-btn');
-//     boardLink.href = '#'; // Set the href attribute to '#' for now
-//     boardLink.addEventListener('click', () => {
-//       switchBoard(board);
-//     });
-//     boardsNavLinksDiv.appendChild(boardLink);
-//   });
-// }
-
-// function switchBoard(boardName) {
-//   activeBoard = boardName;
-//   localStorage.setItem('activeBoard', JSON.stringify(activeBoard));
-//   elements.headerBoardName.textContent = activeBoard;
-//   styleActiveBoard(activeBoard);
-//   refreshTasksUI();
-// }
-
-// function refreshTasksUI() {
-//   filterAndDisplayTasksByBoard(activeBoard);
-// }
-
-// Filters tasks corresponding to the board name and displays them on the DOM.
-// TASK: Fix Bugs
-// function filterAndDisplayTasksByBoard(boardName) {
-//   const filteredTasks = getTasks().filter(task => task.board === boardName);
-//   elements.columnDivs.forEach(column => {
-//     const status = column.dataset.status;
-//     column.innerHTML = `<div class="column-head-div">
-//                           <span class="dot" id="${status}-dot"></span>
-//                           <h4 class="columnHeader">${status.toUpperCase()}</h4>
-//                         </div>`;
-
-//     const tasksContainer = document.createElement("div");
-//     column.appendChild(tasksContainer);
-
-//     filteredTasks.filter(task => task.status === status).forEach(task => {
-//       const taskElement = document.createElement("div");
-//       taskElement.classList.add("task-div");
-//       taskElement.textContent = task.title;
-//       taskElement.dataset.taskId = task.id;
-//       taskElement.addEventListener("click", () =>{
-//          openEditTaskModal(task)
-//         });
-//       tasksContainer.appendChild(taskElement);
-//     });
-//   });
-// 
 
 function refreshTasksUI() {
   filterAndDisplayTasksByBoard(activeBoard);
